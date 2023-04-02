@@ -36,8 +36,8 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
   availableExercises: Exercise[] = [];
 
   ngOnDestroy(): void {
-    this.exercisesSub.unsubscribe();
-    this.loadingSubs.unsubscribe();
+    this.exercisesSub?.unsubscribe();
+    this.loadingSubs?.unsubscribe();
   }
   exercisesSub!: Subscription;
   loadingSubs!: Subscription;
