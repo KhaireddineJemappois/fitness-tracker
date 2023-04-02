@@ -1,8 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { MaterialModule } from '../material/material.module';
 import { CurrentTrainingComponent } from './current-training/current-training.component';
 import { StopTrainingComponent } from './current-training/stop-training/stop-training.component';
 import { TrainingComponent } from './main/training.component';
@@ -11,7 +7,8 @@ import { PastTrainingsComponent } from './past-trainings/past-trainings.componen
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { environment } from 'src/environments/environment';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,17 +18,8 @@ import { environment } from 'src/environments/environment';
     NewTrainingComponent,
     PastTrainingsComponent,
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MaterialModule,
-    FlexLayoutModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    AngularFireAuthModule,
-  ],
+  imports: [ReactiveFormsModule, SharedModule, AngularFirestoreModule],
   exports: [],
   entryComponents: [StopTrainingComponent],
 })
-export class TrainingModule { }
+export class TrainingModule {}
