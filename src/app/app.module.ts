@@ -8,7 +8,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-import AppComponent from './app.component';import { WelcomeComponent } from './welcome/welcome.component';
+import AppComponent from './app.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './navigation/header/header.component';
@@ -19,12 +20,9 @@ import { TrainingModule } from './training/training.module';
 @NgModule({
   declarations: [
     AppComponent,
-
-
     WelcomeComponent,
     HeaderComponent,
     SidenavListComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -37,11 +35,9 @@ import { TrainingModule } from './training/training.module';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-
-    AuthModule
+    AuthModule,
   ],
   providers: [AuthService, UiService],
   bootstrap: [AppComponent],
-
 })
 export class AppModule {}
