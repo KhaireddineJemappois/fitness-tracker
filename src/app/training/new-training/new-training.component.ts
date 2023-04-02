@@ -22,7 +22,7 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
     );
     this.exercisesSub = this.trainingService.exercisesChanged.subscribe(
        (exercises) => {
-        debugger;
+
         console.log("this.availableExercises: ",exercises)
         this.availableExercises = exercises as Exercise[];
       }
