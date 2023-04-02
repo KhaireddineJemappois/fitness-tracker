@@ -7,7 +7,7 @@ import { PastTrainingsComponent } from './past-trainings/past-trainings.componen
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
-import { TrainingRoutingModule } from './training.routing';
+import { TrainingRoutingModule } from './training.routing.module';
 
 @NgModule({
   declarations: [
