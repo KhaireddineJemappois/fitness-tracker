@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { AuthData } from './auth-data.model';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { TrainingService } from '../training/training.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -12,16 +13,18 @@ export class AuthService {
   constructor(
     private router: Router,
     private trainingService: TrainingService,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private snackBar: MatSnackBar
   ) {}
   authChange = new Subject<boolean>();
-  authError = new Subject<string>();
   private isAuthenticated = false;
   registerUser(authData: AuthData) {
     this.afAuth
       .createUserWithEmailAndPassword(authData.email, authData.password)
       .then((success) => {})
-      .catch((err) => console.error(err));
+      .catch((error) =>
+        this.snackBar.open(error.message, undefined, { duration: 3000 })
+      );
   }
   initAuthListener() {
     this.afAuth.authState.subscribe((user) => {
@@ -39,19 +42,16 @@ export class AuthService {
   }
 
   login(authData: AuthData) {
-    debugger;
     this.afAuth
       .signInWithEmailAndPassword(authData.email, authData.password)
       .then((success) => {})
-      .catch((err) => this.authFailed(err));
+      .catch((error) => {
+        debugger;
+        this.snackBar.open(error.message, undefined, { duration: 3000 });
+      });
   }
   logOut() {
     this.afAuth.signOut();
   }
   isAuth = () => this.isAuthenticated;
-
-  private authFailed(error: string) {
-    this.authError.next(error);
-    this.isAuthenticated = false;
-  }
 }

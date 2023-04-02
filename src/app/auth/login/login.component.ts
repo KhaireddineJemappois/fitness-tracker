@@ -27,11 +27,6 @@ export class LoginComponent implements OnInit,OnDestroy {
 
   authSub!:Subscription;
   ngOnInit(): void {
-    this.authSub = this.authService.authError.subscribe((error) => {
-      debugger;
-      this.error=error;
-    });
-
   }
   ngOnDestroy(): void {
     this.authSub.unsubscribe();

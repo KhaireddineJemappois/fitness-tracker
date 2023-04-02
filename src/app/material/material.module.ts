@@ -17,13 +17,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule} from '@angular/material/table'
 import { MatSortModule } from '@angular/material/sort';
 import {MatPaginatorModule } from '@angular/material/paginator';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar'
 @NgModule({
   declarations: [],
   imports: [
     MatButtonModule,
     MatProgressSpinnerModule,
     MatInputModule,
+    MatSnackBarModule,
     MatIconModule,
     MatFormFieldModule,
     MatDatepickerModule,
@@ -51,6 +52,7 @@ import {MatPaginatorModule } from '@angular/material/paginator';
     MatDatepickerModule,
     MatNativeDateModule,
     MatCheckboxModule,
+    MatSnackBarModule,
     MatProgressSpinnerModule,
     MatSelectModule,
     MatSidenavModule,
