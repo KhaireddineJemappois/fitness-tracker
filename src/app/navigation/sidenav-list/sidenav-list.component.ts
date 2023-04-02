@@ -20,7 +20,7 @@ export class SidenavListComponent implements OnInit ,OnDestroy{
 
   ngOnInit() {
     this.authSub = this.authService.authChange.subscribe((status:boolean) => {
-      debugger;
+      ;
       this.isAuth = status;
     });
   }

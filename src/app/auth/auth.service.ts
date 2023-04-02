@@ -15,22 +15,19 @@ export class AuthService {
     private router: Router,
     private trainingService: TrainingService,
     private afAuth: AngularFireAuth,
-    private snackBar: MatSnackBar,
-    private uiService:UiService
+    private uiService: UiService
   ) {}
   authChange = new Subject<boolean>();
   private isAuthenticated = false;
   registerUser(authData: AuthData) {
-    this.uiService.loadingStateChanged.next(true)
+    this.uiService.loadingStateChanged.next(true);
     this.afAuth
       .createUserWithEmailAndPassword(authData.email, authData.password)
       .then((success) => {})
       .catch((error) =>
-        this.snackBar.open(error.message, undefined, { duration: 3000 })
+        this.uiService.showSnackBar(error.message, undefined, 3000)
       )
-      .finally(()=>
-      this.uiService.loadingStateChanged.next(false)
-    );;
+      .finally(() => this.uiService.loadingStateChanged.next(false));
   }
   initAuthListener() {
     this.afAuth.authState.subscribe((user) => {
@@ -53,12 +50,10 @@ export class AuthService {
       .signInWithEmailAndPassword(authData.email, authData.password)
       .then((success) => {})
       .catch((error) => {
-        debugger;
-        this.snackBar.open(error.message, undefined, { duration: 3000 });
+        ;
+        this.uiService.showSnackBar(error.message, undefined,  3000);
       })
-      .finally(()=>
-        this.uiService.loadingStateChanged.next(false)
-      );
+      .finally(() => this.uiService.loadingStateChanged.next(false));
   }
   logOut() {
     this.afAuth.signOut();

@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
   loginForm: FormGroup;
   onSubmit() {
+    ;
     this.authService.login({
       email: this.loginForm.value.email,
       password: this.loginForm.value.password,
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     );
   }
   ngOnDestroy(): void {
-    this.authSub.unsubscribe();
+    this.authSub?.unsubscribe();
     this.uiSubs.unsubscribe();
   }
 }
