@@ -1,0 +1,30 @@
+/* #container {
+  display: flex;
+  height: 300px;
+  border: 1px solid black;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+
+}
+.child {
+  /* flex: 1; */
+  /* width: 200px;
+  height: 200px; */
+/* } */
+/* #child1 { */
+  /* background-color: red; */
+/* } */
+/* #child2 { */
+  /* background-color: green; */
+/* } */
+/* #child3 { */
+
+  /* background-color: blue; */
+/* } */
+/* .signup-form{
+  width: 300px;
+} */
+mat-form-field {
+  width: 300px;
+}
