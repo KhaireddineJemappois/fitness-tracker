@@ -41,13 +41,11 @@ export class TrainingService {
         )
         .subscribe(
           (exercises: Exercise[]) => {
-            debugger;
             this.uiService.loadingStateChanged.next(false);
             this._availableExercises = exercises;
             this.exercisesChanged.next([...this._availableExercises]);
           },
           error => {
-            debugger;
             this.uiService.loadingStateChanged.next(false);
             this.uiService.showSnackBar('Fetching Exercises failed, please try again later',undefined,3000);
             this.exercisesChanged.next(null);
