@@ -26,7 +26,6 @@ import { TrainingModule } from './training/training.module';
   ],
   imports: [
     BrowserModule,
-    TrainingModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
@@ -34,7 +33,7 @@ import { TrainingModule } from './training/training.module';
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
+    AngularFirestoreModule,//auth needs it to instantiate training service that is lazily loaded
     AuthModule,
   ],
   providers: [AuthService, UiService],

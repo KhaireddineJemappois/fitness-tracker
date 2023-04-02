@@ -1,17 +1,20 @@
 import { AuthGuard } from './auth/auth.guard';
-import { LoginComponent } from './auth/login/login.component';
-import { SignupComponent } from './auth/signup/signup.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: '',component:WelcomeComponent}
+  { path: '', component: WelcomeComponent },
+  {
+    path: 'training',
+    loadChildren: () =>
+      import('./training/training.module').then((m) => m.TrainingModule),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthGuard]
+  providers: [AuthGuard],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
