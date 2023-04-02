@@ -25,6 +25,7 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
 import { StopTrainingComponent } from './training/current-training/stop-training/stop-training.component';
 import { TrainingComponent } from './training/main/training.component';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { UiService } from './shared/ui.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +39,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     HeaderComponent,
     SidenavListComponent,
     StopTrainingComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,AngularFireAuthModule
   ],
-  providers: [AuthService],
+  providers: [AuthService,UiService],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingComponent],
 })
