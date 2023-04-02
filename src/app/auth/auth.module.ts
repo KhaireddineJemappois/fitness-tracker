@@ -7,6 +7,7 @@ import { MaterialModule } from '../material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { SharedModule } from '../shared/shared.module';
+import { AuthRoutingModule } from './auth.routing.module';
 
 @NgModule({
   declarations: [SignupComponent, LoginComponent],
@@ -16,6 +17,7 @@ import { SharedModule } from '../shared/shared.module';
     MaterialModule,
     FlexLayoutModule,
     AngularFireAuthModule,
+    AuthRoutingModule
   ]
 })
 export class AuthModule {}
