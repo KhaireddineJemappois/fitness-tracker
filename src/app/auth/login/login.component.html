@@ -30,7 +30,7 @@
         Invalid password
       </mat-error>
     </mat-form-field>
-    <button *ngIf="!isLoading" type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Connect</button>
-    <mat-spinner *ngIf="isLoading" mode="indeterminate" color="primary"></mat-spinner>
+    <button *ngIf="!(isLoading$ | async)" type="submit" mat-raised-button color="primary" [disabled]="loginForm.invalid">Connect</button>
+    <mat-spinner *ngIf="isLoading$ | async" mode="indeterminate" color="primary"></mat-spinner>
   </form>
 </section>

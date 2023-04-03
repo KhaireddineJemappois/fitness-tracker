@@ -16,7 +16,9 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { UiService } from './shared/ui.service';
 import { AuthModule } from './auth/auth.module';
-import { TrainingModule } from './training/training.module';
+//is now lazily loaded => remove from imports import { TrainingModule } from './training/training.module';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './app.reducer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +27,7 @@ import { TrainingModule } from './training/training.module';
     SidenavListComponent,
   ],
   imports: [
+    StoreModule.forRoot(reducers),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -34,7 +37,7 @@ import { TrainingModule } from './training/training.module';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,//auth needs it to instantiate training service that is lazily loaded
-    AuthModule,
+    AuthModule
   ],
   providers: [AuthService, UiService],
   bootstrap: [AppComponent],
