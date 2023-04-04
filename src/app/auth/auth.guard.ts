@@ -5,7 +5,6 @@ import {
   CanActivate,
   CanLoad,
   Route,
-  Router,
   RouterStateSnapshot,
   UrlSegment,
   UrlTree,
@@ -19,8 +18,6 @@ export class AuthGuard implements CanActivate, CanLoad {
    *
    */
   constructor(
-    private authService: AuthService,
-    private router: Router,
     private store: Store<fromRoot.State>
   ) {}
   canLoad(
@@ -31,8 +28,7 @@ export class AuthGuard implements CanActivate, CanLoad {
     | UrlTree
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree> {
-      return this.store.select(fromRoot.getIsAuth)
-      .pipe(take(1));
+    return this.store.select(fromRoot.getIsAuth).pipe(take(1));
     // this.router.navigate(['/login']);
     // return false;
   }
@@ -40,7 +36,6 @@ export class AuthGuard implements CanActivate, CanLoad {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot // :boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree>
   ) {
-    return this.store.select(fromRoot.getIsAuth)
-    .pipe(take(1));
+    return this.store.select(fromRoot.getIsAuth).pipe(take(1));
   }
 }
