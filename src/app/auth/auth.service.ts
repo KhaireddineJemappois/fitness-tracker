@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { AuthData } from './auth-data.model';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { TrainingService } from '../training/training.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { UiService } from '../shared/ui.service';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../app.reducer'

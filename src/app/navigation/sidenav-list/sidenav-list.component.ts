@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import * as fromRoot from '../../app.reducer';
 import { Store } from '@ngrx/store';

@@ -5,6 +5,10 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 import { TrainingService } from '../training.service';
 
+import * as fromTraining from '../training.reducer';
+import { Store } from '@ngrx/store';
+import { Observable, take } from 'rxjs';
+import { Exercise } from '../exercise.model';
 @Component({
   selector: 'app-current-training',
   templateUrl: './current-training.component.html',
@@ -16,23 +20,28 @@ export class CurrentTrainingComponent implements OnInit {
   @Output() trainingExit = new EventEmitter<void>();
   constructor(
     private dialog: MatDialog,
-    private trainingService: TrainingService
+    private trainingService: TrainingService,
+    private store: Store<fromTraining.State>
   ) {}
 
   ngOnInit() {
-    this.currentExercise = this.trainingService.runningExercise;
+    // this.currentExercise$ = this.store.select(fromTraining.getActiveTraining)
     this.startOrResumeTimer();
   }
-  currentExercise: any;
+  currentExercise$!: Observable<Exercise | undefined>;
   startOrResumeTimer() {
-    const step = (this.currentExercise.duration / 100) * 1000;
-    this.timer = setInterval(() => {
-      this.progress += 1;
-      if (this.progress >= 100) {
-        this.trainingService.completeExercise();
-        clearInterval(this.timer);
-      }
-    }, step);
+    this.store.select(fromTraining.getActiveTraining)
+    .pipe(take(1))// to subscribe just once
+    .subscribe(ex => {
+      const step = ((ex as Exercise).duration / 100) * 1000;
+      this.timer = setInterval(() => {
+        this.progress += 1;
+        if (this.progress >= 100) {
+          this.trainingService.completeExercise();
+          clearInterval(this.timer);
+        }
+      }, step);
+    });
   }
   onStop() {
     clearInterval(this.timer);
@@ -44,11 +53,12 @@ export class CurrentTrainingComponent implements OnInit {
       })
       .afterClosed()
       .subscribe((result: any) => {
+
         if (!result) this.startOrResumeTimer();
         else {
-          // this.trainingExit.emit();
+          debugger;
           this.trainingService.cancelExercise(this.progress);
-          clearInterval(this.timer);
+           clearInterval(this.timer);
         }
       });
   }

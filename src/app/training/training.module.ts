@@ -8,6 +8,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { TrainingRoutingModule } from './training.routing.module';
+import { StoreModule} from '@ngrx/store';
+import { trainingReducer } from './training.reducer';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,12 @@ import { TrainingRoutingModule } from './training.routing.module';
     NewTrainingComponent,
     PastTrainingsComponent,
   ],
-  imports: [ReactiveFormsModule,TrainingRoutingModule, SharedModule, AngularFirestoreModule],
+  imports: [ReactiveFormsModule,TrainingRoutingModule, SharedModule,
+
+    AngularFirestoreModule,
+
+  StoreModule.forFeature('training',trainingReducer)
+  ],
   exports: [],
   entryComponents: [StopTrainingComponent],
 })
